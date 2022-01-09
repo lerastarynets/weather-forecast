@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { getWeather } from "../api/api";
 import { getWeatherT } from "../redux/weather-reducer";
 import React from "react";
 
@@ -25,6 +24,7 @@ const Day = (props) => {
   return (
     <div>
       <button onClick={handleClick}>Get Weather</button>
+      <div>{props.day}</div>
       <div>{props.weather}</div>
     </div>
   );
@@ -37,19 +37,16 @@ const Weather = (props) => {
   return (
     <div>
       <h1>Weather in {props.city}</h1>
-      <Day
-        weather={props.weather}
-        city={props.city}
-        getWeather={props.getWeatherT}
-      />
+      <Day day={props.day} weather={props.weather} />
     </div>
   );
 };
 
 let mapStateToProps = (state) => {
   return {
-    weather: state.weather,
     city: state.city,
+    weather: state.weather,
+    day: state.day,
   };
 };
 
